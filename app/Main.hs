@@ -1,6 +1,9 @@
 module Main where
 
-import Lib
+import ElementaryCellularAutomaton
+import qualified Data.Text.IO as TIO
 
 main :: IO ()
-main = someFunc
+main = do
+  putStrLn "Which rule?"
+  print simple
