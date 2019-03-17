@@ -10,6 +10,7 @@ data Neighbourhood = Neighbourhood Cell Cell Cell
 
 type Row = [Cell]
 
+
 nextRow :: [Neighbourhood] -> [Cell]
 nextRow row = []
 

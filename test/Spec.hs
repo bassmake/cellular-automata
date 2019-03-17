@@ -1,6 +1,8 @@
 import Test.Tasty
 import Test.Tasty.HUnit
 
+import qualified ElementaryCellularAutomaton.RuleSpec as ECA.Rule
+
 sayYo :: String -> String
 sayYo to = "Yo " ++ to ++ "!"
 
@@ -9,7 +11,7 @@ add5 i = i + 5
 
 main :: IO ()
 main = do
-  defaultMain (testGroup "Our Library Tests" [sayYoTest, add5Test])
+  defaultMain (testGroup "Our Library Tests" [sayYoTest, add5Test, ECA.Rule.spec])
 
 sayYoTest :: TestTree
 sayYoTest = testCase "Testing sayYo"
