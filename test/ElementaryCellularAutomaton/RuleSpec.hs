@@ -7,7 +7,7 @@ import Test.Tasty.HUnit
 import ElementaryCellularAutomaton.Rule
 
 spec :: TestTree
-spec = testGroup "ElementaryCellularAutomaton-Rule" [validRuleSpec]
+spec = testGroup "Rule" [validRuleSpec]
 
-validRuleSpec = testCase "Valid rule"
+validRuleSpec = testCase "Valid rule can be created"
   (assertEqual "rule 1" 1 (rule 1))
