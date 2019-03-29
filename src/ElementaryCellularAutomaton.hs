@@ -3,16 +3,13 @@ module ElementaryCellularAutomaton
   ) where
 
 import Data.Text as T
-
-data Cell = One | Zero deriving (Eq, Show)
-
-data Neighbourhood = Neighbourhood Cell Cell Cell
-
-type Row = [Cell]
+import ElementaryCellularAutomaton.Cell
+import ElementaryCellularAutomaton.Row
+import ElementaryCellularAutomaton.Neighbourhood
 
 
-nextRow :: [Neighbourhood] -> [Cell]
-nextRow row = []
+nextRow :: [Neighbourhood] -> Row
+nextRow row = Row []
 
 simple :: Row
-simple = [Zero, Zero, Zero, Zero, One, Zero, Zero, Zero, Zero]
+simple = Row [Zero, Zero, Zero, Zero, One, Zero, Zero, Zero, Zero]
