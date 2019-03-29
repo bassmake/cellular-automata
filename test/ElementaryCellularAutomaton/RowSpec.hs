@@ -12,4 +12,4 @@ spec = testGroup "Row" [emptyRowShow, rowShow]
 
 emptyRowShow = testCase "Empty row shown as ''" $ show (Row []) @?= ""
 
-rowShow = testCase "One shown as '#'" $ show (Row [One, Zero, One, One, Zero]) @?= "# ## "
+rowShow = testCase "Non empty shown as '# ## '" $ show (Row [One, Zero, One, One, Zero]) @?= "# ## "
