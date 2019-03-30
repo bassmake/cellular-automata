@@ -3,23 +3,26 @@ module ElementaryCellularAutomaton.RuleSpec
   ) where
 
 import           ElementaryCellularAutomaton.Cell
+import           ElementaryCellularAutomaton.Neighbourhood
 import           ElementaryCellularAutomaton.Rule
 import           Test.Tasty
 import           Test.Tasty.HUnit
 
 spec :: TestTree
-spec =
-  testGroup
-    "Rule"
-    [ validRuleSpec
-    , configuration0
-    , configuration1
-    , configuration2
-    , configuration184
-    , configuration255
-    ]
+spec = testGroup "Rule" (configurationSpecs ++ nextStateSpecs)
 
-validRuleSpec = testCase "Valid rule can be created" $ rule 1 @?= 1
+configurationSpecs =
+  [ configuration0
+  , configuration1
+  , configuration2
+  , configuration184
+  , configuration255
+  ]
+
+nextStateSpecs =
+  [nextState111, nextState110, nextState100, nextState001, nextState000]
+
+rule184 = configuration 184
 
 configuration0 =
   testCase "0 rule configuration can be created" $
@@ -35,8 +38,28 @@ configuration2 =
 
 configuration184 =
   testCase "184 rule configuration can be created" $
-  configuration 184 @?= [One, Zero, One, One, One, Zero, Zero, Zero]
+  rule184 @?= [One, Zero, One, One, One, Zero, Zero, Zero]
 
 configuration255 =
   testCase "255 rule configuration can be created" $
   configuration 255 @?= [One, One, One, One, One, One, One, One]
+
+nextState111 =
+  testCase "111 for 184 rule gives 1" $
+  nextState rule184 (Neighbourhood One One One) @?= One
+
+nextState110 =
+  testCase "110 for 184 rule gives 0" $
+  nextState rule184 (Neighbourhood One One Zero) @?= Zero
+
+nextState100 =
+  testCase "100 for 184 rule gives 1" $
+  nextState rule184 (Neighbourhood Zero One One) @?= One
+
+nextState001 =
+  testCase "001 for 184 rule gives 0" $
+  nextState rule184 (Neighbourhood Zero Zero One) @?= Zero
+
+nextState000 =
+  testCase "000 for 184 rule gives 0" $
+  nextState rule184 (Neighbourhood Zero Zero Zero) @?= Zero

@@ -1,5 +1,5 @@
 module ElementaryCellularAutomaton.Neighbourhood
-  ( Neighbourhood
+  ( Neighbourhood(..)
   ) where
 
 import           ElementaryCellularAutomaton.Cell

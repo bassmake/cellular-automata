@@ -1,6 +1,6 @@
 module ElementaryCellularAutomaton.Rule
   ( RuleNumber
-  , rule
+  , nextState
   , configuration
   ) where
 
@@ -17,6 +17,19 @@ rule n
     error ("must be number from 0 to 255. current value: " ++ show n)
 
 type Configuration = [Cell]
+
+nextState :: Configuration -> Neighbourhood -> Cell
+nextState conf neigh = conf !! index
+  where
+    index = configurationIndex neigh
+
+configurationIndex :: Neighbourhood -> Int
+configurationIndex (Neighbourhood a b c) =
+  7 - ((4 * toNumber a) + (2 * toNumber b) + toNumber c)
+
+toNumber :: Cell -> Int
+toNumber Zero = 0
+toNumber One  = 1
 
 configuration :: Int -> Configuration
 configuration = configurationRule . rule
