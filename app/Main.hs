@@ -1,7 +1,7 @@
 module Main where
 
-import ElementaryCellularAutomaton
-import qualified Data.Text.IO as TIO
+import qualified Data.Text.IO                as TIO
+import           ElementaryCellularAutomaton
 
 main :: IO ()
 main = do

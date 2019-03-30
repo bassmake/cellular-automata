@@ -1,12 +1,11 @@
-module ElementaryCellularAutomaton 
+module ElementaryCellularAutomaton
   ( simple
   ) where
 
-import Data.Text as T
-import ElementaryCellularAutomaton.Cell
-import ElementaryCellularAutomaton.Row
-import ElementaryCellularAutomaton.Neighbourhood
-
+import           Data.Text                                 as T
+import           ElementaryCellularAutomaton.Cell
+import           ElementaryCellularAutomaton.Neighbourhood
+import           ElementaryCellularAutomaton.Row
 
 nextRow :: [Neighbourhood] -> Row
 nextRow row = Row []
