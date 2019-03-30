@@ -12,27 +12,31 @@ spec =
   testGroup
     "Rule"
     [ validRuleSpec
-    , bitsZeroSpec
-    , bitsOneSpec
-    , bitsTwoSpec
-    , bitsThreeSpec
-    , bitsFourSpec
-    , bitsFiveSpec
-    , bitsSixSpec
+    , configuration0
+    , configuration1
+    , configuration2
+    , configuration184
+    , configuration255
     ]
 
 validRuleSpec = testCase "Valid rule can be created" $ rule 1 @?= 1
 
-bitsZeroSpec = testCase "bits 0" $ bits 0 @?= []
+configuration0 =
+  testCase "0 rule configuration can be created" $
+  configuration 0 @?= [Zero, Zero, Zero, Zero, Zero, Zero, Zero, Zero]
 
-bitsOneSpec = testCase "bits 1" $ bits 1 @?= [One]
+configuration1 =
+  testCase "1 rule configuration can be created" $
+  configuration 1 @?= [Zero, Zero, Zero, Zero, Zero, Zero, Zero, One]
 
-bitsTwoSpec = testCase "bits 2" $ bits 2 @?= [One, Zero]
+configuration2 =
+  testCase "2 rule configuration can be created" $
+  configuration 2 @?= [Zero, Zero, Zero, Zero, Zero, Zero, One, Zero]
 
-bitsThreeSpec = testCase "bits 3" $ bits 3 @?= [One, One]
+configuration184 =
+  testCase "184 rule configuration can be created" $
+  configuration 184 @?= [One, Zero, One, One, One, Zero, Zero, Zero]
 
-bitsFourSpec = testCase "bits 4" $ bits 4 @?= [One, Zero, Zero]
-
-bitsFiveSpec = testCase "bits 5" $ bits 5 @?= [One, Zero, One]
-
-bitsSixSpec = testCase "bits 6" $ bits 6 @?= [One, One, Zero]
+configuration255 =
+  testCase "255 rule configuration can be created" $
+  configuration 255 @?= [One, One, One, One, One, One, One, One]

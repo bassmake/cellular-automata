@@ -1,6 +1,7 @@
 module ElementaryCellularAutomaton.Rule
   ( RuleNumber
   , rule
+  , configuration
   ) where
 
 import           Data.Bits
@@ -12,17 +13,26 @@ type RuleNumber = Int
 rule :: Int -> RuleNumber
 rule n
   | 0 <= n && n <= 255 = n
-  | otherwise = error "must be number from 0 to 255"
+  | otherwise =
+    error ("must be number from 0 to 255. current value: " ++ show n)
 
 type Configuration = [Cell]
 
-configuration :: [Cell] -> Configuration
-configuration cells
-  | length cells == 8 = cells
-  | otherwise = error "configration must have 8 cells"
+configuration :: Int -> Configuration
+configuration = configurationRule . rule
 
---configuration :: RuleNumber -> Configuration
---configuration ruleNumber = Configuration
+configurationRule :: RuleNumber -> Configuration
+configurationRule rule = configurationSmart (filler ++ ruleBits)
+  where
+    ruleBits = bits rule
+    filler = replicate (8 - length ruleBits) Zero
+
+configurationSmart :: [Cell] -> Configuration
+configurationSmart cells
+  | length cells == 8 = cells
+  | otherwise =
+    error ("configration must have 8 cells. current value: " ++ show cells)
+
 bits :: RuleNumber -> [Cell]
 bits = reverse . rBits
 
