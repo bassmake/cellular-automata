@@ -23,8 +23,6 @@ dependencies:
 - base >= 4.7 && < 5
 - random
 - text
-- tasty
-- tasty-hunit
 
 library:
   source-dirs: src
@@ -50,3 +48,5 @@ tests:
     - -with-rtsopts=-N
     dependencies:
     - cellular-automata
+    - tasty
+    - tasty-hunit
