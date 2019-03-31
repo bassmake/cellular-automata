@@ -8,3 +8,4 @@ data Neighbourhood =
   Neighbourhood Cell
                 Cell
                 Cell
+  deriving (Eq, Show)
