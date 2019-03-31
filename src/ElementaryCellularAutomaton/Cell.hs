@@ -8,5 +8,5 @@ data Cell
   deriving (Eq)
 
 instance Show Cell where
-  show Zero = " "
+  show Zero = "."
   show One  = "#"

@@ -1,14 +1,19 @@
 module ElementaryCellularAutomaton
-  ( simple
+  ( defaultRule
   ) where
 
-import           Data.Text                                 as T
 import           ElementaryCellularAutomaton.Cell
 import           ElementaryCellularAutomaton.Neighbourhood
 import           ElementaryCellularAutomaton.Row
+import           ElementaryCellularAutomaton.Rule
 
-nextRow :: [Neighbourhood] -> Row
-nextRow row = Row []
+defaultRule :: Row
+defaultRule = initRow defaultSize
 
-simple :: Row
-simple = Row [Zero, Zero, Zero, Zero, One, Zero, Zero, Zero, Zero]
+defaultSize :: Int
+defaultSize = 100
+
+initRow :: Int -> Row
+initRow size = Row (side ++ [One] ++ side)
+  where
+    side = replicate size Zero

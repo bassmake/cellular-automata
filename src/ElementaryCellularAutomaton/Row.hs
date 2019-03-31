@@ -24,14 +24,14 @@ joinNeighbourhoods (Just (begin, end)) inner = (begin : inner) ++ [end]
 
 innerNeighbourhoods :: Row -> [Neighbourhood]
 innerNeighbourhoods (Row []) = []
-innerNeighbourhoods (Row (x:[])) = []
-innerNeighbourhoods (Row (x:y:[])) = []
+innerNeighbourhoods (Row [x]) = []
+innerNeighbourhoods (Row [x, y]) = []
 innerNeighbourhoods (Row (x:y:z:xs)) =
-  (Neighbourhood x y z) : (innerNeighbourhoods (Row (y : z : xs)))
+  Neighbourhood x y z : innerNeighbourhoods (Row (y : z : xs))
 
 outerNeighbourhoods :: Row -> Maybe (Neighbourhood, Neighbourhood)
 outerNeighbourhoods (Row []) = Nothing
-outerNeighbourhoods (Row (x:[])) = Nothing
+outerNeighbourhoods (Row [x]) = Nothing
 outerNeighbourhoods (Row row) =
   Just (Neighbourhood lastC headC head2C, Neighbourhood last2C lastC headC)
   where

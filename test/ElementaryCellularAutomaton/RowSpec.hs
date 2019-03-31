@@ -22,20 +22,20 @@ spec =
 emptyRowShow = testCase "Empty row shown as ''" $ show (Row []) @?= ""
 
 rowShow =
-  testCase "Non empty shown as '# ## '" $
-  show (Row [One, Zero, One, One, Zero]) @?= "# ## "
+  testCase "Non empty shown as '#.##.'" $
+  show (Row [One, Zero, One, One, Zero]) @?= "#.##."
 
 neighbourhoodsForEmptySpec =
   testCase "neighbourhoods for empty row must be empty" $
-  (neighbourhoods (Row [])) @?= []
+  neighbourhoods (Row []) @?= []
 
 neighbourhoodsForSingleSpec =
   testCase "neighbourhoods for single cell row must be empty" $
-  (neighbourhoods (Row [One])) @?= []
+  neighbourhoods (Row [One]) @?= []
 
 neighbourhoodsSpec =
   testCase "neighbourhoods for not single cell row must be correct" $
-  (neighbourhoods (Row [One, Zero, Zero])) @?=
+  neighbourhoods (Row [One, Zero, Zero]) @?=
   [ Neighbourhood Zero One Zero
   , Neighbourhood One Zero Zero
   , Neighbourhood Zero Zero One
