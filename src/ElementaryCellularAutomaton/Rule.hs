@@ -1,5 +1,5 @@
 module ElementaryCellularAutomaton.Rule
-  ( RuleNumber
+  ( RuleConfiguration
   , nextState
   , configuration
   ) where
@@ -16,9 +16,12 @@ rule n
   | otherwise =
     error ("must be number from 0 to 255. current value: " ++ show n)
 
-type Configuration = [Cell]
+type RuleConfiguration = [Cell]
 
-nextState :: Configuration -> Neighbourhood -> Cell
+configuration :: Int -> RuleConfiguration
+configuration = configurationRule . rule
+
+nextState :: RuleConfiguration -> Neighbourhood -> Cell
 nextState conf neigh = conf !! index
   where
     index = configurationIndex neigh
@@ -31,16 +34,13 @@ toNumber :: Cell -> Int
 toNumber Zero = 0
 toNumber One  = 1
 
-configuration :: Int -> Configuration
-configuration = configurationRule . rule
-
-configurationRule :: RuleNumber -> Configuration
+configurationRule :: RuleNumber -> RuleConfiguration
 configurationRule rule = configurationSmart (filler ++ ruleBits)
   where
     ruleBits = bits rule
     filler = replicate (8 - length ruleBits) Zero
 
-configurationSmart :: [Cell] -> Configuration
+configurationSmart :: [Cell] -> RuleConfiguration
 configurationSmart cells
   | length cells == 8 = cells
   | otherwise =

@@ -8,6 +8,7 @@ import           ElementaryCellularAutomaton.Neighbourhood
 
 newtype Row =
   Row [Cell]
+  deriving (Eq)
 
 instance Show Row where
   show (Row [])     = ""
