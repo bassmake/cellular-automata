@@ -9,13 +9,13 @@ import           ElementaryCellularAutomaton.Row
 import           ElementaryCellularAutomaton.Rule
 
 rows :: [Row]
-rows = [initRow defaultSize, nextRow defaultConfiguration (initRow defaultSize)]
+rows = initRow defaultSize : map (nextRow defaultConfiguration) rows
 
 defaultSize :: Int
 defaultSize = 100
 
 defaultConfiguration :: RuleConfiguration
-defaultConfiguration = configuration 184
+defaultConfiguration = configuration 90
 
 initRow :: Int -> Row
 initRow size = Row (side ++ [One] ++ side)

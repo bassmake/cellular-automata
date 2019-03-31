@@ -6,4 +6,4 @@ import           ElementaryCellularAutomaton
 main :: IO ()
 main = do
   putStrLn "Which rule?"
-  mapM_ print rows
+  mapM_ print (take 100 rows)
